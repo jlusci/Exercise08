@@ -11,10 +11,10 @@ def make_chains(input_list):
     for i in range(len(input_list)-2):
         key = (input_list[i],input_list[i+1])
         value = input_list[i+2]
-        if not key in text_chain_dict:
-            text_chain_dict[key] = value
-        else:
+        if key in text_chain_dict:
             text_chain_dict[key].append(value)
+        else:
+            text_chain_dict[key] = [value]
            #text_chain_dict.get(key)
     # print text_chain_dict   
     return text_chain_dict
@@ -28,17 +28,18 @@ def main():
     args = sys.argv
 
     # Change this to read input_text from a file
-    input_list = []
+    
     f = open("green_eggs.txt")
-    # indata = f.read()
-    # input_text = list(indata.strip('\n').split(' '))
-    #input_text = list(input_text.split(' '))
-    # print input_text
+    input_text= f.read()
+    input_list = input_text.split()
+   
+    # print input_list
   
-    for line in f:
-        line = line.rstrip()
-        input_text = line.split(' ')
-        input_list += input_text
+# if we were to read line by line we'd do the following
+    # for line in f:
+    #     line = line.rstrip()
+    #     input_text = line.split(' ')
+    #     input_list += input_text
 
     # print input_list
 
