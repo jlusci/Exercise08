@@ -25,20 +25,18 @@ def make_text(chain_dict):
     text_block = []
 
     start_phrase = random.choice(chain_dict.keys()) 
-    add_phrase = random.choice(chain_dict.get(start_phrase))
+  
 
-    #for index in range(5):
-        
-    next_phrase = (start_phrase[1], add_phrase) 
-        #text_block.append('what')
-        #index += 1
+    key = (start_phrase[0],start_phrase[1])
+    # text_block.extend(start_phrase[0],start_phrase[1])
+    # print text_block
 
-    print start_phrase, add_phrase, next_phrase
+    while key in chain_dict:
+        add_phrase = random.choice(chain_dict.get(key)) # chooses random value from key value list
+        print key[0],key[1], add_phrase
+
+        key = (key[1],add_phrase) # makes a new tuple key from start phrase and add phrase
     
-
-        
-    # print phrase
-    # print chain_dict.get(start_phrase)
 
     # return "Here's some random text."
 
