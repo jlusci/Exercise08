@@ -28,15 +28,15 @@ def make_text(chain_dict):
   
 
     key = (start_phrase[0],start_phrase[1])
-    # text_block.extend(start_phrase[0],start_phrase[1])
-    # print text_block
+    # text_block.extend([start_phrase[0],start_phrase[1]])
 
     while key in chain_dict:
         add_phrase = random.choice(chain_dict.get(key)) # chooses random value from key value list
-        print key[0],key[1], add_phrase
-
+        # print key[0],key[1], add_phrase
+        text_block.extend([key[0],key[1],add_phrase])
         key = (key[1],add_phrase) # makes a new tuple key from start phrase and add phrase
     
+    print text_block
 
     # return "Here's some random text."
 
@@ -55,7 +55,9 @@ def main():
     chain_dict = make_chains(input_list)
     # print chain_dict
     random_text = make_text(chain_dict)
-    # print random_text
+    # # print random_text
+    # print " ".join(random_text)
+
 
 if __name__ == "__main__":
     main()
