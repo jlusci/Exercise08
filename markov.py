@@ -22,41 +22,40 @@ def make_text(chain_dict):
     """Takes a dictionary of markov chains and returns random text
     based off an original text."""
     
+    #initialize empty list and make random choice from keys in chain_dict
     text_block = []
-
     start_phrase = random.choice(chain_dict.keys()) 
-  
 
+    #assign variable key to start of random text and add to text_block list
     key = (start_phrase[0],start_phrase[1])
-    # text_block.extend([start_phrase[0],start_phrase[1]])
+    text_block.extend([start_phrase[0],start_phrase[1]])
 
+    #step through key value pairs to randomly pick next value 
     while key in chain_dict:
         add_phrase = random.choice(chain_dict.get(key)) # chooses random value from key value list
-        # print key[0],key[1], add_phrase
-        text_block.extend([key[0],key[1],add_phrase])
+        text_block.extend([add_phrase])
         key = (key[1],add_phrase) # makes a new tuple key from start phrase and add phrase
     
-    print text_block
+    return text_block
 
-    # return "Here's some random text."
 
 def main():
     args = sys.argv
 
-    # Change this to read input_text from a file
-    
-    f = open("green_eggs.txt")
-    input_text= f.read()
+    filename = sys.argv[1]
+
+    #Open and read input file, use .split to break into list separated on whitespace
+    f = open(filename)
+    input_text = f.read()
     input_list = input_text.split()
-   
-    # print input_list
 
-
+    #call function to create dictionary of key value pairs
     chain_dict = make_chains(input_list)
-    # print chain_dict
+    #call function to generate random text from dictionary
     random_text = make_text(chain_dict)
-    # # print random_text
-    # print " ".join(random_text)
+
+    #print joined list of random text
+    print " ".join(random_text)
 
 
 if __name__ == "__main__":
