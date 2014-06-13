@@ -38,6 +38,22 @@ def make_text(chain_dict):
     
     return text_block
 
+def clean_up_text(random_text):
+    """Takes in list of random text and outputs it 5 words on a line"""
+    # random_join = " ".join(random_text)
+    total_text = ""
+
+    for index in range(0,len(random_text),5):
+        new_line = " ".join(random_text[index:index+5]) + '\n'
+        total_text = total_text + new_line
+ 
+    return total_text
+
+def sixty_characters(text_block):
+    
+    my_tweet = text_block[0:59]
+
+    return my_tweet
 
 def main():
     args = sys.argv
@@ -53,9 +69,17 @@ def main():
     chain_dict = make_chains(input_list)
     #call function to generate random text from dictionary
     random_text = make_text(chain_dict)
+    #call function to clean up the random text generated to five lines at a time
+    total_text = clean_up_text(random_text)
 
     #print joined list of random text
-    print " ".join(random_text)
+    # print total_text
+
+    #print cleaned up text of random words
+    # print " ".join(random_line)
+
+    my_tweet = sixty_characters(total_text)
+    print my_tweet
 
 
 if __name__ == "__main__":
